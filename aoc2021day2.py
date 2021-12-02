@@ -5,21 +5,11 @@ import re
 def posCalc(inst, pos):
     match inst[0]:
         case "forward":
-            return [pos[0] + inst[1], pos[1]]
+            return [pos[0] + inst[1], pos[1]] if len(pos) == 2 else [pos[0] + inst[1], pos[1] + pos[2] * inst[1], pos[2]]
         case "down":
-            return [pos[0], pos[1] + inst[1]]
+            return [pos[0], pos[1] + inst[1]] if len(pos) == 2 else [pos[0], pos[1], pos[2] + inst[1]]
         case "up":
-            return [pos[0], pos[1] - inst[1]]
-
-
-def aimedPosCalc(inst, pos):
-    match inst[0]:
-        case "forward":
-            return [pos[0] + inst[1], pos[1] + pos[2] * inst[1], pos[2]]
-        case "down":
-            return [pos[0], pos[1], pos[2] + inst[1]]
-        case "up":
-            return [pos[0], pos[1], pos[2] - inst[1]]
+            return [pos[0], pos[1] - inst[1]] if len(pos) == 2 else [pos[0], pos[1], pos[2] - inst[1]]
 
 
 with open('C:/Users/User/Documents/input.txt') as f:
@@ -30,7 +20,7 @@ f.close()
 part1 = reduce(lambda prev, cur: posCalc(cur, prev), instruction, [0, 0])
 part1 = part1[0] * part1[1]
 
-part2 = reduce(lambda prev, cur: aimedPosCalc(cur, prev), instruction, [0, 0, 0])
+part2 = reduce(lambda prev, cur: posCalc(cur, prev), instruction, [0, 0, 0])
 part2 = part2[0] * part2[1]
 
 print(str(part1) + " " + str(part2))
