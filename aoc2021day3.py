@@ -18,7 +18,7 @@ def find_rate_p2(input, flag):
                         temp_input.pop(y)
                         break
         if len(temp_input) == 1:
-            temp_input[0] = [str(int) for int in temp_input[0]]
+            temp_input[0] = [str(num) for num in temp_input[0]]
             rate_str = "".join(temp_input[0])
             return rate_str
         for y in range(0, len(temp_input), 1):
@@ -27,18 +27,18 @@ def find_rate_p2(input, flag):
             else:
                 zero_count = zero_count + 1
         if one_count >= zero_count:
-            rate_str = rate_str + ("1" if flag == 1 else "0")
+            rate_str = rate_str + str(flag)
         else:
-            rate_str = rate_str + ("0" if flag == 1 else "1")
+            rate_str = rate_str + str(~flag + 2)
     return rate_str
 
 
 gamma_rate = ""
 epsilon_rate = ""
-for x in range(0, my_input[0].__len__(), 1):
+for x in range(0, len(my_input[0]), 1):
     zero_count = 0
     one_count = 0
-    for y in range(0, my_input.__len__(), 1):
+    for y in range(0, len(my_input), 1):
         if my_input[y][x] == 1:
             one_count = one_count + 1
         else:
