@@ -4,11 +4,7 @@ with open('C:/Users/User/Documents/input.txt') as f:
     my_input = list(map(lambda a: list(map(lambda b: re.findall(r'[a-z]+', b), a.split("|"))), f.read().split('\n')))
 f.close()
 
-part1 = 0
-for line in my_input:
-    for digit in line[1]:
-        if len(digit) < 5 or len(digit) > 6:
-            part1 += 1
+part1 = len([digit for line in my_input for digit in line[1] if len(digit) < 5 or len(digit) > 6])
 
 part2 = 0
 for line in my_input:
