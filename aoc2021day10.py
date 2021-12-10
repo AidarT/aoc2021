@@ -14,8 +14,6 @@ for ind, line in enumerate(my_input):
         line = line.replace("()", "").replace("[]", "").replace("{}", "").replace("<>", "")
         if len1 == len(line):
             break
-        else:
-            len1 = len(line)
     my_input[ind] = line
     indexes = [(i, ch) for i, ch in enumerate(line) if ch in "}])>"]
     if len(indexes) > 0:
