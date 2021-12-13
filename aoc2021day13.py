@@ -31,6 +31,6 @@ for type_, coord in folds:
             part1 = reduce(lambda prev, cur: prev + cur.count(1), paper, 0)
 
 print(str(part1) + " Часть 2:")
-paper = [["#" if dot == 1 else "." for dot in line] for line in paper]
+paper = [["#" if dot == 1 else " " for dot in line] for line in paper]
 for line in paper:
     print(('').join(line))
