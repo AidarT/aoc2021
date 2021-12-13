@@ -18,11 +18,9 @@ for x, y in dots:
 part1 = 0
 for type_, coord in folds:
     if type_ == 'y':
-        fold1 = paper[:coord]
+        fold1 = list(reversed(paper[:coord]))
         fold2 = paper[coord + 1:]
-        fold1.reverse()
-        paper = [[dot | (fold2[y][x] if y < len(fold2) else 0) for x, dot in enumerate(line)] for y, line in enumerate(fold1)]
-        paper.reverse()
+        paper = list(reversed([[dot | (fold2[y][x] if y < len(fold2) else 0) for x, dot in enumerate(line)] for y, line in enumerate(fold1)]))
     else:
         fold1 = [line[:coord] for line in paper]
         fold2 = [list(reversed(line[coord + 1:])) for line in paper]
