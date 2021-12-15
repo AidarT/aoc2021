@@ -1,5 +1,4 @@
 import re
-# import sys
 
 with open('C:/Users/User/Documents/input.txt') as f:
     my_input = list(map(lambda a: list(map(lambda b: int(b), re.findall(r'\d', a))), f.read().split('\n')))
@@ -8,25 +7,6 @@ f.close()
 moves = {1: (0, 1), 2: (0, -1), 3: (1, 0), 4: (-1, 0)}
 map_ = {(x, y): v for y, line in enumerate(my_input) for x, v in enumerate(line)}
 aim = (max([coord[0] for coord in map_.keys()]), max([coord[1] for coord in map_.keys()]))
-
-# алгоритм Дийкстры
-# weights = {node: sys.maxsize * 2 + 1 for node in map_}
-# weights[(0, 0)] = 0
-# seen_nodes = []
-# while aim not in seen_nodes:
-#     lowest = sys.maxsize * 2 + 1
-#     for node in map_.keys():
-#         if weights[node] < lowest and node not in seen_nodes:
-#             lowest = weights[node]
-#             selected_node = node
-#     seen_nodes.append(selected_node)
-#     for node, weight in map_.items():
-#         if ((abs(node[0] - selected_node[0]) == 1 and abs(node[1] - selected_node[1]) == 0) or
-#             (abs(node[0] - selected_node[0]) == 0 and abs(node[1] - selected_node[1]) == 1)) and \
-#                 node not in seen_nodes and weights[node] > weights[selected_node] + weight:
-#             weights[node] = weights[selected_node] + weight
-#
-# part1 = weights[aim]
 
 
 def A_star_search(map_, aim):
