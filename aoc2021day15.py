@@ -15,7 +15,8 @@ def A_star_search(map_, aim):
     came_from = {(0, 0): None}
     costs = {(0, 0): 0}
     while len(queue) != 0:
-        cur_node, priority = queue.pop([el[1] for el in queue].index(min([el[1] for el in queue])))
+        priorities = [el[1] for el in queue]
+        cur_node = queue.pop(priorities.index(min(priorities)))[0]
         if cur_node == aim:
             return costs[aim]
         for move in range(1, 5, 1):
@@ -24,8 +25,7 @@ def A_star_search(map_, aim):
             new_cost = costs[cur_node] + map_[next_node]
             if next_node not in costs or new_cost < costs[next_node]:
                 costs[next_node] = new_cost
-                priority = new_cost
-                queue.append([next_node, priority])
+                queue.append([next_node, new_cost])
                 came_from[next_node] = cur_node
 
 
