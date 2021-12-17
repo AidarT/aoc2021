@@ -21,8 +21,6 @@ for i in for_del:
     del caves[caves[i][0]][caves[caves[i][0]].index(i)]
     del caves[i]
 
-paths = []
-
 
 def calc_paths(paths, caves, start, path, flag=False, count=False):
     path_prev = path
@@ -44,10 +42,11 @@ def calc_paths(paths, caves, start, path, flag=False, count=False):
                 paths.append(path)
 
 
+paths = []
 calc_paths(paths, caves, 'start', 'start')
 part1 = len(paths)
 
-paths = []
+paths.clear()
 calc_paths(paths, caves_part2, 'start', 'start', True)
 part2 = len(paths)
 
