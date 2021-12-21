@@ -1,4 +1,3 @@
-import math
 import re
 import copy
 
@@ -7,23 +6,25 @@ with open('C:/Users/User/Documents/input.txt') as f:
     pos_p2 = copy.deepcopy(pos)
 f.close()
 
+
+def calc_score(amount, pos, scores, die, player):
+    amount += 3
+    new_pos = pos[player][1] + (die * 3 + 3) % 10
+    pos[player][1] = new_pos if new_pos <= 10 else new_pos % 10
+    scores[player] += pos[player][1]
+    die += 3
+    return amount, die
+
+
 scores = [0, 0]
 die = 1
 amount = 0
 while True:
-    amount += 3
-    new_pos = pos[0][1] + (die * 3 + 3) % 10
-    pos[0][1] = new_pos if new_pos <= 10 else new_pos % 10
-    scores[0] += pos[0][1]
+    amount, die = calc_score(amount, pos, scores, die, 0)
     if scores[0] >= 1000:
         lost = 1
         break
-    die += 3
-    amount += 3
-    new_pos = pos[1][1] + (die * 3 + 3) % 10
-    pos[1][1] = new_pos if new_pos <= 10 else new_pos % 10
-    scores[1] += pos[1][1]
-    die += 3
+    amount, die = calc_score(amount, pos, scores, die, 1)
     if scores[1] >= 1000:
         lost = 0
         break
