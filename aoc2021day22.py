@@ -48,6 +48,11 @@ def crossing_check(cube1, cube2):
         z_min = max(z1_min, z2_min)
         z_max = min(z1_max, z2_max)
         return [state2, x_min, x_max, y_min, y_max, z_min, z_max]
+        # if state2 == 'on':
+        #     crossings[i][j] = abs(x2_max - x2_min + 1) * abs(y2_max - y2_min + 1) * abs(z2_max - z2_min + 1) \
+        #                       - abs(x_max - x_min + 1) * abs(y_max - y_min + 1) * abs(z_max - z_min + 1)
+        # else:
+        #     crossings[i][j] = - abs(x_max - x_min + 1) * abs(y_max - y_min + 1) * abs(z_max - z_min + 1)
     else:
         return 0
 
@@ -63,26 +68,7 @@ for i, [state1, x1_min, x1_max, y1_min, y1_max, z1_min, z1_max] in enumerate(ste
         if i == j:
             crossings[i][i] = abs(x1_max - x1_min + 1) * abs(y1_max - y1_min + 1) * abs(z1_max - z1_min + 1)
         else:
-            state2, x2_min, x2_max, y2_min, y2_max, z2_min, z2_max = steps[j]
-            cross_check = (x1_min <= x2_min <= x1_max or x1_min <= x2_max <= x1_max) and \
-                          (y1_min <= y2_min <= y1_max or y1_min <= y2_max <= y1_max) and \
-                          (z1_min <= z2_min <= z1_max or z1_min <= z2_max <= z1_max)
-            if cross_check:
-                x_min = max(x1_min, x2_min)
-                x_max = min(x1_max, x2_max)
-                y_min = max(y1_min, y2_min)
-                y_max = min(y1_max, y2_max)
-                z_min = max(z1_min, z2_min)
-                z_max = min(z1_max, z2_max)
-                crossings[i][j] = [state2, x_min, x_max, y_min, y_max, z_min, z_max]
-                # if state2 == 'on':
-                #     crossings[i][j] = abs(x2_max - x2_min + 1) * abs(y2_max - y2_min + 1) * abs(z2_max - z2_min + 1) \
-                #                       - abs(x_max - x_min + 1) * abs(y_max - y_min + 1) * abs(z_max - z_min + 1)
-                # else:
-                #     crossings[i][j] = - abs(x_max - x_min + 1) * abs(y_max - y_min + 1) * abs(z_max - z_min + 1)
-            else:
-                crossings[i][j] = 0
-
+            crossings[i][j] = crossing_check(steps[i], steps[j])
 
 part2 = crossings[0][0]
 for i, crossing in enumerate(crossings[0]):
