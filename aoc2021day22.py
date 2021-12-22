@@ -25,14 +25,6 @@ for state, x_min, x_max, y_min, y_max, z_min, z_max in steps:
 
 part1 = len(cubes)
 
-# x_min = min([line[1] for line in steps])
-# y_min = min([line[3] for line in steps])
-# z_min = min([line[5] for line in steps])
-# x_max = max([line[2] for line in steps])
-# y_max = max([line[4] for line in steps])
-# z_max = max([line[6] for line in steps])
-# cubes = {(x, y, z): "off" for x in range(x_min, x_max+1) for y in range(y_min, y_max+1) for z in range(z_min, z_max+1)}
-
 
 def crossing_check(cube1, cube2):
     state1, x1_min, x1_max, y1_min, y1_max, z1_min, z1_max = cube1
