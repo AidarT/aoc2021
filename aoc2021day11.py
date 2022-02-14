@@ -9,6 +9,8 @@ f.close()
 moves = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (-1, 1), (1, -1), (-1, -1)]
 
 
+    
+
 def calc_flashes(energy, flashed, amount, turns, max_turns, part):
     if turns == max_turns and part == 1:
         return amount
