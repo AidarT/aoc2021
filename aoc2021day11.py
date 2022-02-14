@@ -1,4 +1,5 @@
 import re
+from copy import deepcopy
 
 with open('C:/Users/User/Documents/input.txt') as f:
     en_map = list(map(lambda a: list(map(lambda b: int(b), re.findall(r'\d', a))), f.read().split('\n')))
@@ -7,9 +8,7 @@ with open('C:/Users/User/Documents/input.txt') as f:
 f.close()
 
 moves = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (-1, 1), (1, -1), (-1, -1)]
-
-
-    
+  
 
 def calc_flashes(energy, flashed, amount, turns, max_turns, part):
     if turns == max_turns and part == 1:
@@ -48,8 +47,8 @@ def flash(energy, flashed, coord, amount):
                     amount = flash(energy, flashed, new_coord, amount)
     return amount
 
-part1 = calc_flashes(energy, flashed, 0, 0, 100, 1)
+part1 = calc_flashes(deepcopy(energy), flashed, 0, 0, 100, 1)
 
-part2 = calc_flashes(energy, flashed, 0, 0, 1000, 2)
+part2 = calc_flashes(energy, flashed, 0, 0, 100, 2)
 
 print(str(part1) + " " + str(part2))
